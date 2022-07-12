@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from .forms import HabitForm
 
 
 # Create your views here.
@@ -10,5 +11,19 @@ def home(request):
 
 def list_habits(request):
     return render(
-        request, "habits/list_habits.html", {'user': request.user}
+        request, "habits/list_habits.html", {"user": request.user}
     )
+
+
+def add_habit(request):
+    if request.method == "POST":
+        form = HabitForm(data=request.POST)
+        if form.is_valid():
+            habit = form.save(commit=False)
+            habit.user = request.user
+            habit.save()
+            return redirect("list_habits")
+    else:
+        form = HabitForm()
+    
+    return render(request, "habits/add_habit.html", {"form": form})

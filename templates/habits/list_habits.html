@@ -1,5 +1,9 @@
 {% extends "base.html" %} {% load static %} {% block javascript %}
-<!-- <script src={% static 'js/list_albums.js' %} defer></script> -->
+<!-- block  -->
 {% endblock javascript %} {% block content %}
-<h1>Welcome {{ user }}, here are your Habits</h1>
+<div>
+  <a href={% url 'add_habit' %}>Create Habit</a>
+  <h1>Welcome {{ user }}, here are your Habits</h1>
+  <!-- loop through user habits  -->
+</div>
 {% endblock content %}
