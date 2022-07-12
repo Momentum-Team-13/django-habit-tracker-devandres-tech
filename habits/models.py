@@ -25,7 +25,11 @@ class Habit(BaseModel):
 
 
 class Record(BaseModel):
-    date = models.DateField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True, auto_now_add=True)
     daily_number = models.IntegerField()
     habit = models.ForeignKey(Habit, on_delete=models.CASCADE)
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['habit', 'date'], name='unique_record')
+        ]
