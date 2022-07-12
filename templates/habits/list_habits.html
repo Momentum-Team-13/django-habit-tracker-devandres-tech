@@ -5,5 +5,12 @@
   <a href={% url 'add_habit' %}>Create Habit</a>
   <h1>Welcome {{ user }}, here are your Habits</h1>
   <!-- loop through user habits  -->
+  {% if habits %}
+    <div>
+      {% for habit in habits %}
+      <a href="#">{{ habit.name }}</a><br />
+      {% endfor %}
+    </div>
+  {% endif %}
 </div>
 {% endblock content %}

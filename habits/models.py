@@ -23,6 +23,9 @@ class Habit(BaseModel):
     name = models.CharField(max_length=255)
     target = models.IntegerField()
 
+    def __str__(self):
+        return self.name
+
 
 class Record(BaseModel):
     date = models.DateField(blank=True, null=True, auto_now_add=True)

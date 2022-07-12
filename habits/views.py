@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from habits.models import Habit
 from .forms import HabitForm
 
 
@@ -10,8 +11,10 @@ def home(request):
 
 
 def list_habits(request):
+    habits = Habit.objects.filter(user=request.user.pk)
+    print(habits)
     return render(
-        request, "habits/list_habits.html", {"user": request.user}
+        request, "habits/list_habits.html", {"user": request.user, "habits": habits}
     )
 
 
