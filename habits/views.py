@@ -10,5 +10,5 @@ def home(request):
 
 def list_habits(request):
     return render(
-        request, "habits/list_habits.html"
+        request, "habits/list_habits.html", {'user': request.user}
     )
