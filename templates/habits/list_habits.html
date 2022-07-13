@@ -9,7 +9,8 @@
     <div>
       {% for habit in habits %}
       <a href="#">{{ habit.name }}</a> 
-      <a href={% url 'create_update_record' pk=habit.pk year=habit.created_at.year month=habit.created_at.month day=habit.created_at.day %}>Add record</a><br />
+      <a href="{% url 'create_update_record' pk=habit.pk year=date.year month=date.month day=date.day%}">Add record</a>
+      <br />
       {% endfor %}
     </div>
   {% endif %}
