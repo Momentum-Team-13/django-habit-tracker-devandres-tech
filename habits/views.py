@@ -38,23 +38,23 @@ def add_habit(request):
     return render(request, "habits/add_habit.html", {"form": form})
 
 
-def create_update_record(request, pk, date):
-    recipe = get_object_or_404(request.user.recipes, pk=recipe_pk)
+def create_update_record(request, pk, year, month, day):
+    user_habit = Habit.objects.filter(user=request.user.pk).get(pk=pk)
 
     if request.method == "POST":
-        form = RecipeStepForm(data=request.POST)
+        form = RecordForm(data=request.POST)
 
         if form.is_valid():
-            recipe_step = form.save(commit=False)
-            recipe_step.recipe = recipe
-            recipe_step.save()
+            record = form.save(commit=False)
+            record.habit = user_habit
+            record.save()
 
-            return redirect("recipe_detail", pk=recipe.pk)
+            return redirect("list_habits")
     else:
-        form = RecipeStepForm()
+        form = RecordForm()
 
     return render(
-        request, "core/add_recipe_step.html", {"form": form, "recipe": recipe}
+        request, "habits/create_update_record.html", {"form": form}
     )
 
 
