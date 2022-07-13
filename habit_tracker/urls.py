@@ -23,4 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("habits/", habit_views.list_habits, name="list_habits"),
     path("habits/new", habit_views.add_habit, name="add_habit"),
+    path("habit/<int:pk>/<int:year>/<int:month>/<int:day>", 
+          habit_views.create_update_record, name="create_update_record"),
 ]

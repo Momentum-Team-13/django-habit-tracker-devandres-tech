@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from habits.models import Habit
-from .forms import HabitForm
+from .forms import HabitForm, RecordForm
 
 
 # Create your views here.
@@ -30,3 +30,7 @@ def add_habit(request):
         form = HabitForm()
     
     return render(request, "habits/add_habit.html", {"form": form})
+
+
+def create_update_record(request, pk, year=None, month=None, day=None):
+    pass
