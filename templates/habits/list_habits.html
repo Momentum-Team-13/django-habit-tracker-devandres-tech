@@ -8,7 +8,7 @@
   {% if habits %}
     <div>
       {% for habit in habits %}
-      <a href="#">{{ habit.name }}</a> 
+      <a href="{% url 'details_habit' pk=habit.pk %}">{{ habit.name }}</a> 
       <a href="{% url 'create_update_record' pk=habit.pk year=date.year month=date.month day=date.day%}">Add record</a>
       <br />
       {% endfor %}

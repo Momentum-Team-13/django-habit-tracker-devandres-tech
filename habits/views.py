@@ -58,4 +58,10 @@ def create_update_record(request, pk, year, month, day):
     )
 
 
+def details_habit(request, pk):
+    user_habit = Habit.objects.filter(user=request.user.pk).get(pk=pk)
+
+    return render(request, "habits/details_habit.html", {
+        "habit": user_habit
+    })
 

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<h3>Habit Detail</h3>
+
+<a href={% url 'list_habits' %}>Back to all habits</a>
+<div>
+  <h1>{{ habit.name }}</h1>
+  <p>Habit Target: <b>{{ habit.target }}</b></p>
+  <h4>Current Records</h4>
+  {% for record in habit.record_set.all %}
+    <a href="#">Date: {{ record.date }} Record Target: {{ record.daily_number }}</a>
+  {% endfor %}
+
+</div>
+
+{% endblock content %}
