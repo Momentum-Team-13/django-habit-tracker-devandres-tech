@@ -4,15 +4,15 @@
 
 {% block content %}
 
-<h3>Habit Detail</h3>
-
 <a href={% url 'list_habits' %}>Back to all habits</a>
 <div>
-  <h1>{{ habit.name }}</h1>
+  <h2>{{ habit.name }}</h2>
   <p>Habit Target: <b>{{ habit.target }}</b></p>
   <h4>Current Records</h4>
   {% for record in habit.record_set.all %}
-    <a href="#">Date: {{ record.date }} Record Target: {{ record.daily_number }}</a>
+    <a href={% url 'create_update_record' pk=habit.pk year=record.date.year month=record.date.month day=record.date.day %}>
+      Date: {{ record.date }} Daily Target: {{ record.daily_number }} 
+    </a><br />
   {% endfor %}
 
 </div>

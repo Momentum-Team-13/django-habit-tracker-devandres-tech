@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block title%}Create/Edit Record{% endblock title%}
 {% block content %}
-<h1>Create or Edit a record</h1>
+<h2>Create or edit a record for habit: {{ habit.name }}</h2>
 <div class="form">
   <form method="POST">
     {% csrf_token %} {% for field in form %}
