@@ -3,9 +3,9 @@
 {% endblock javascript %} {% block content %}
 <div>
   <a href={% url 'add_habit' %}>Create Habit</a>
-  <h1>Welcome {{ user }}, here are your Habits</h1>
   <!-- loop through user habits  -->
   {% if habits %}
+  <h1>Your Habits</h1>
     <div>
       {% for habit in habits %}
       <a href="{% url 'details_habit' pk=habit.pk %}">{{ habit.name }}</a> 
@@ -13,6 +13,8 @@
       <br />
       {% endfor %}
     </div>
+  {% else %}
+    <h1>You don't have any habits, start adding one!</h1>
   {% endif %}
 </div>
 {% endblock content %}

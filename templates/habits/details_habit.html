@@ -8,12 +8,17 @@
 <div>
   <h2>{{ habit.name }}</h2>
   <p>Habit Target: <b>{{ habit.target }}</b></p>
-  <h4>Current Records</h4>
-  {% for record in habit.record_set.all %}
-    <a href={% url 'create_update_record' pk=habit.pk year=record.date.year month=record.date.month day=record.date.day %}>
-      Date: {{ record.date }} Daily Target: {{ record.daily_number }} 
-    </a><br />
-  {% endfor %}
+  {% if habit.record_set.all %}
+    <h4>Current Records</h4>
+    {% for record in habit.record_set.all %}
+      <a href={% url 'create_update_record' pk=habit.pk year=record.date.year month=record.date.month day=record.date.day %}>
+        Date: {{ record.date }} Daily Target: {{ record.daily_number }} 
+      </a><br />
+    {% endfor %}
+  {% else %}
+      <h4>You don't have any records, start adding one!</h4>
+      <a href="{% url 'create_update_record' pk=habit.pk year=date.year month=date.month day=date.day%}">Add record</a>
+  {% endif %}
 
 </div>
 

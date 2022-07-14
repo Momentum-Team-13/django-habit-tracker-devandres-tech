@@ -51,7 +51,7 @@ def create_update_record(request, pk, year, month, day):
         record, _ = Record.objects.get_or_create(date=record_date, habit=user_habit)
         record.daily_number = target
         record.save()
-        return redirect("list_habits")
+        return redirect("details_habit", pk=user_habit.pk)
     else:
         records = Record.objects.filter(date=record_date, habit=user_habit)
         if records.exists():
@@ -68,8 +68,13 @@ def create_update_record(request, pk, year, month, day):
 @login_required
 def details_habit(request, pk):
     user_habit = Habit.objects.filter(user=request.user.pk).get(pk=pk)
-
+    date = {
+        'year': datetime.date.today().year,
+        'month': datetime.date.today().month,
+        'day': datetime.date.today().day
+    }
     return render(request, "habits/details_habit.html", {
-        "habit": user_habit
+        "habit": user_habit,
+        "date": date
     })
 
