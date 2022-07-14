@@ -2,6 +2,7 @@ import datetime
 from django.shortcuts import render, redirect 
 from habits.models import Habit, Record
 from .forms import HabitForm, RecordForm
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -11,6 +12,7 @@ def home(request):
     return render(request, "habits/home.html")
 
 
+@login_required
 def list_habits(request):
     habits = Habit.objects.filter(user=request.user.pk)
     date = {
@@ -24,6 +26,7 @@ def list_habits(request):
         )
 
 
+@login_required
 def add_habit(request):
     if request.method == "POST":
         form = HabitForm(data=request.POST)
@@ -38,6 +41,7 @@ def add_habit(request):
     return render(request, "habits/add_habit.html", {"form": form})
 
 
+@login_required
 def create_update_record(request, pk, year, month, day):
     user_habit = Habit.objects.filter(user=request.user.pk).get(pk=pk)
     record_date = datetime.date(year, month, day)
@@ -61,6 +65,7 @@ def create_update_record(request, pk, year, month, day):
     )
 
 
+@login_required
 def details_habit(request, pk):
     user_habit = Habit.objects.filter(user=request.user.pk).get(pk=pk)
 
