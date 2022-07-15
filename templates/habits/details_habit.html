@@ -10,7 +10,7 @@
   <p>Habit Target: <b>{{ habit.target }}</b></p>
   {% if habit.record_set.all %}
     <h4>Current Records</h4>
-    {% for record in habit.record_set.all %}
+    {% for record in user_records %}
       <a href={% url 'create_update_record' pk=habit.pk year=record.date.year month=record.date.month day=record.date.day %}>
         Date: {{ record.date }} Daily Target: {{ record.daily_number }} 
       </a>
