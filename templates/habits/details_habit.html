@@ -13,7 +13,9 @@
     {% for record in habit.record_set.all %}
       <a href={% url 'create_update_record' pk=habit.pk year=record.date.year month=record.date.month day=record.date.day %}>
         Date: {{ record.date }} Daily Target: {{ record.daily_number }} 
-      </a><br />
+      </a>
+      <a href={% url 'delete_record' pk=habit.pk year=record.date.year month=record.date.month day=record.date.day %}>Delete Record</a>
+      <br />
     {% endfor %}
   {% else %}
       <h4>You don't have any records, start adding one!</h4>

@@ -26,4 +26,6 @@ urlpatterns = [
     path("habits/<int:pk>", habit_views.details_habit, name="details_habit"),
     path("habits/<int:pk>/<int:year>/<int:month>/<int:day>", 
           habit_views.create_update_record, name="create_update_record"),
+    path("habits/<int:pk>/<int:year>/<int:month>/<int:day>/delete", 
+          habit_views.delete_record, name="delete_record"),
 ]

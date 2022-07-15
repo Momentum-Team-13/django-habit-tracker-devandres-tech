@@ -78,3 +78,16 @@ def details_habit(request, pk):
         "date": date
     })
 
+
+@login_required
+def delete_record(request, pk, year, month, day):
+    user_habit = Habit.objects.filter(user=request.user.pk).get(pk=pk)
+    record_date = datetime.date(year, month, day) 
+    record = Record.objects.get(date=record_date, habit=user_habit.pk)
+
+    if request.method == "POST":
+        record.delete()
+        return redirect('details_habit', pk=pk)
+
+    return render(request, "habits/delete_record.html", 
+        {"record": record, "habit": user_habit})
