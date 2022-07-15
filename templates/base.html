@@ -1,8 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="{% static 'js/app.js' %}"></script>  
     {% block meta %}{% endblock meta %}
     <title>{% block title %}{% endblock title %}</title>
     {% block javascript %}{% endblock javascript %}

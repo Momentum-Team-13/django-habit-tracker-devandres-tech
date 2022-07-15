@@ -8,6 +8,22 @@
 <div>
   <h2>{{ habit.name }}</h2>
   <p>Habit Target: <b>{{ habit.target }}</b></p>
+  <div class="form">
+    <h4>Add record for previous date</h4>
+    <form method="POST">
+        {% csrf_token %} {% for field in form %}
+        <div>
+          <label for="{{field.id_for_label}}">{{ field.label}}</label>
+          {{ field }}
+        </div>
+        {% endfor %}
+        <label>Date</label>
+        <input type="date" name="date" id="id_date">
+        <div>
+          <button type="submit">Save</button>
+        </div>
+      </form>
+  </div>
   {% if habit.record_set.all %}
     <h4>Current Records</h4>
     {% for record in user_records %}

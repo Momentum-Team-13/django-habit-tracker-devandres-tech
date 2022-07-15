@@ -69,6 +69,7 @@ def create_update_record(request, pk, year, month, day):
 def details_habit(request, pk):
     user_habit = Habit.objects.filter(user=request.user.pk).get(pk=pk)
     user_records = Record.objects.filter(habit=user_habit).order_by('-date')
+    record_form = RecordForm()
     date = {
         'year': datetime.date.today().year,
         'month': datetime.date.today().month,
@@ -77,7 +78,8 @@ def details_habit(request, pk):
     return render(request, "habits/details_habit.html", {
         "habit": user_habit,
         "date": date,
-        "user_records": user_records
+        "user_records": user_records,
+        "form": record_form 
     })
 
 

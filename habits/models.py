@@ -28,7 +28,7 @@ class Habit(BaseModel):
 
 
 class Record(BaseModel):
-    date = models.DateField(blank=True, null=True, auto_now_add=True)
+    date = models.DateField(blank=True, null=True)
     daily_number = models.IntegerField(null=True)
     habit = models.ForeignKey(Habit, on_delete=models.CASCADE)
 
