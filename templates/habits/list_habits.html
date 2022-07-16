@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% load static %} {% block javascript %}
+<!-- block  -->
+{% endblock javascript %} {% block content %}
+<div>
+  <a href={% url 'add_habit' %}>Create Habit</a>
+  <!-- loop through user habits  -->
+  {% if habits %}
+  <h1>Your Habits</h1>
+    <div>
+      {% for habit in habits %}
+      <a href="{% url 'details_habit' pk=habit.pk %}">{{ habit.name }}</a> 
+      <a href="{% url 'create_update_record' pk=habit.pk year=date.year month=date.month day=date.day%}">Add record</a>
+      <br />
+      {% endfor %}
+    </div>
+  {% else %}
+    <h1>You don't have any habits, start adding one!</h1>
+  {% endif %}
+</div>
+{% endblock content %}

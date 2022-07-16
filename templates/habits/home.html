@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<article>
+  <h1>Your Daily Habits</h1>
+  <h2>Sign up or log in to your account.</h2>
+  <div>
+    <a href="{% url 'registration_register' %}"> Sign Up </a>
+    <a href="{% url 'auth_login' %}"> Log In </a>
+  </div>
+</article>
+{% endblock content %}
