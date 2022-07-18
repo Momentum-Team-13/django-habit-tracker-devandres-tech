@@ -9,12 +9,12 @@
   <h2>{{ habit.name }}</h2>
   <p>Habit Target: <b>{{ habit.target }}</b></p>
   <div class="form">
-    <h4>Add record for previous date</h4>
-    <form id="previous-date">
-      <label for="birthday">Birthday:</label>
-      <input type="date" id="birthday" name="birthday">
+    <!-- <h4>Add record for previous date</h4> -->
+    <!-- <form id="previous-date">
+      <label>Date:</label>
+      <input type="date">
       <button>Add date</button>
-    </form>
+    </form> -->
   </div>
   {% if habit.record_set.all %}
     <h4>Current Records</h4>
@@ -22,7 +22,7 @@
       <a href={% url 'create_update_record' pk=habit.pk year=record.date.year month=record.date.month day=record.date.day %}>
         Date: {{ record.date }} Daily Target: {{ record.daily_number }} 
       </a>
-      <a href={% url 'delete_record' pk=habit.pk year=record.date.year month=record.date.month day=record.date.day %}>Delete Record</a>
+      <a class="btn btn-danger mb-3"  href={% url 'delete_record' pk=habit.pk year=record.date.year month=record.date.month day=record.date.day %}>Delete Record</a>
       <br />
     {% endfor %}
   {% else %}
