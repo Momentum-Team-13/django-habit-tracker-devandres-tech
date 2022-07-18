@@ -79,7 +79,7 @@ def details_habit(request, pk):
         "habit": user_habit,
         "date": date,
         "user_records": user_records,
-        "form": record_form 
+        "form": record_form
     })
 
 

@@ -10,19 +10,11 @@
   <p>Habit Target: <b>{{ habit.target }}</b></p>
   <div class="form">
     <h4>Add record for previous date</h4>
-    <form method="POST">
-        {% csrf_token %} {% for field in form %}
-        <div>
-          <label for="{{field.id_for_label}}">{{ field.label}}</label>
-          {{ field }}
-        </div>
-        {% endfor %}
-        <label>Date</label>
-        <input type="date" name="date" id="id_date">
-        <div>
-          <button type="submit">Save</button>
-        </div>
-      </form>
+    <form id="previous-date">
+      <label for="birthday">Birthday:</label>
+      <input type="date" id="birthday" name="birthday">
+      <button>Add date</button>
+    </form>
   </div>
   {% if habit.record_set.all %}
     <h4>Current Records</h4>
@@ -37,7 +29,6 @@
       <h4>You don't have any records, start adding one!</h4>
       <a href="{% url 'create_update_record' pk=habit.pk year=date.year month=date.month day=date.day%}">Add record</a>
   {% endif %}
-
 </div>
 
 {% endblock content %}
